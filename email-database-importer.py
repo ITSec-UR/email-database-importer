@@ -21,7 +21,8 @@ cursor = mariadb_connection.cursor()
 mariadb_connection.autocommit(False)
 warnings.filterwarnings('ignore', category=mariadb.Warning)
 
-import_files = [os.path.join(import_folder, file) for file in os.listdir(import_folder)]
+import_files = [os.path.join(import_folder, file) for file in os.listdir(import_folder)
+                if os.path.isfile(os.path.join(import_folder, file))]
 for file_idx, import_file in enumerate(import_files):
     print("\rImporting file %d of %d" % (file_idx + 1, len(import_files)))
     with open(import_file) as csv_file:
